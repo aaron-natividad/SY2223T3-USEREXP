@@ -7,18 +7,18 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float rotationSpeed;
 
-    private Rigidbody2D rigidBody;
+    private Ship ship;
 
     private void Start()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
+        ship = GetComponent<Ship>();
     }
 
     private void FixedUpdate()
     {
         if (Input.GetAxisRaw("Thrust") == 1)
         {
-            rigidBody.velocity = transform.up * moveSpeed * Time.deltaTime;
+            ship.rigidBody.velocity = transform.up * moveSpeed * Time.deltaTime;
         }
 
         if (Input.GetAxisRaw("Horizontal") != 0)

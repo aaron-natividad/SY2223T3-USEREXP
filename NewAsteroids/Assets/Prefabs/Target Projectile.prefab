@@ -100,12 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 934dbeccb14b25c43b5ddaead874ec95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
-  shipProjectileColor: {r: 0, g: 1, b: 0.95004964, a: 0.29803923}
+  bounceParticle: {fileID: 6226981086072599009, guid: 05ec41477f3f7c240bc4d05e5b02ab1d, type: 3}
+  type: 1
+  shipProjectileColor: {r: 0, g: 1, b: 0.95004964, a: 1}
   targetProjectileColor: {r: 1, g: 0.4077798, b: 0, a: 1}
-  bouncedProjectileColor: {r: 1, g: 0, b: 0.90036297, a: 1}
+  bouncedProjectileColor: {r: 0.83172894, g: 0, b: 1, a: 1}
   detection: {fileID: 4285510162665685785}
-  projectileSpeed: 100
+  projectileSpeed: 250
   bounces: 2
 --- !u!70 &4055153181541749199
 CapsuleCollider2D:

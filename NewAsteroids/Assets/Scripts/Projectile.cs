@@ -11,6 +11,7 @@ public enum ProjectileType
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject bounceParticle;
     public ProjectileType type;
 
     // Colors are stored in all projectiles so we can change the type of any projectile in realtime
@@ -44,6 +45,7 @@ public class Projectile : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
+            
             bounces--;
             if (bounces <= 0)
             {
@@ -52,10 +54,16 @@ public class Projectile : MonoBehaviour
             }
             else
             {
+                Instantiate(bounceParticle, transform.position, Quaternion.identity);
                 ChangeType(ProjectileType.Bounced);
                 transform.up = Vector2.Reflect(transform.up, collision.contacts[0].normal);
             }
         }
+    }
+
+    private void OnDestroy()
+    {
+        Instantiate(bounceParticle, transform.position, Quaternion.identity);
     }
 
     public void ChangeType(ProjectileType newType)

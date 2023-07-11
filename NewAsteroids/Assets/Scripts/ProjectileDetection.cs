@@ -8,10 +8,12 @@ public class ProjectileDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.GetComponent<Ship>())
         {
+            Ship ship = collision.GetComponent<Ship>();
             if (projectile.type == ProjectileType.Target || projectile.type == ProjectileType.Bounced)
             {
+                ship.StartCoroutine(ship.CO_TakeDamage());
                 Destroy(transform.parent.gameObject);
             }
         }
