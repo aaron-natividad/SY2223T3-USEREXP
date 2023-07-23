@@ -63,7 +63,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDestroy()
     {
-        Instantiate(bounceParticle, transform.position, Quaternion.identity);
+        //Instantiate(bounceParticle, transform.position, Quaternion.identity);
     }
 
     public void ChangeType(ProjectileType newType)
