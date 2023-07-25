@@ -15,7 +15,7 @@ public class MovingState : ShipState
 
     public override void OnUpdate()
     {
-        if (ship.fire.IsPressed()) stateMachine.SetState(stateMachine.shootingState);
+        if (ship.fire.IsPressed() && ship.shooting.ammo > 0) stateMachine.SetState(stateMachine.shootingState);
 
         if (ship.move.ReadValue<Vector2>() == Vector2.zero) return;
 
@@ -23,6 +23,7 @@ public class MovingState : ShipState
         float moveAngle = Vector2.SignedAngle(Vector2.up, moveDirection);
         float toAngle = Mathf.SmoothDampAngle(ship.transform.eulerAngles.z, moveAngle, ref rotateVelocity, 0.1f);
         ship.transform.rotation = Quaternion.Euler(0, 0, toAngle);
-        ship.rigidBody.velocity = ship.transform.up * ship.moveSpeed;
+        ship.rigidBody.AddForce(ship.transform.up * ship.moveAcceleration, ForceMode2D.Impulse);
+        ship.rigidBody.velocity = Vector2.ClampMagnitude(ship.rigidBody.velocity, ship.moveSpeed);
     }
 }

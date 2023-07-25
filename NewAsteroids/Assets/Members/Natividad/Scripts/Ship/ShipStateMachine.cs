@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ShipStateMachine : MonoBehaviour
 {
+    [HideInInspector] public ShipState currentState;
     [HideInInspector] public MovingState movingState;
     [HideInInspector] public ShootingState shootingState;
 
     private Ship ship;
-    private ShipState currentState;
 
     private void Start()
     {

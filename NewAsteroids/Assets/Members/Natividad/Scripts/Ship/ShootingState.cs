@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ShootingState : ShipState
 {
@@ -17,7 +18,8 @@ public class ShootingState : ShipState
     public override void OnEnter()
     {
         bounces = 0;
-        internalTimer = ship.holdInterval;
+        shooting.ammo = Mathf.Max(shooting.ammo - 1, 0);
+        internalTimer = shooting.holdInterval;
     }
 
     public override void OnUpdate()
@@ -32,11 +34,12 @@ public class ShootingState : ShipState
             ship.transform.rotation = Quaternion.Euler(0, 0, toAngle);
         }
 
-        if (bounces >= shooting.maxBounces) return;
+        if (shooting.ammo <= 0) return;
         if (internalTimer <= 0)
         {
-            bounces = Mathf.Min(bounces + 1, shooting.maxBounces);
-            internalTimer = ship.holdInterval;
+            bounces++;
+            shooting.ammo = Mathf.Max(shooting.ammo - 1, 0);
+            internalTimer = shooting.holdInterval;
         }
         else
         {
@@ -47,5 +50,6 @@ public class ShootingState : ShipState
     public override void OnExit()
     {
         shooting.SpawnProjectile(bounces);
+        ship.rigidBody.AddForce(-ship.transform.up * shooting.recoilPerBounce * (bounces + 1), ForceMode2D.Impulse);
     }
 }
