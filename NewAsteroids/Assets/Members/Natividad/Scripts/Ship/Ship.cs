@@ -5,13 +5,15 @@ using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
+    public int playerNumber;
+    public PlayerInputControls controls;
     public float moveSpeed;
     [Range(0f, 1f)] public float rotateTime;
     public float holdInterval;
 
     [HideInInspector] public ShipShooting shooting;
     [HideInInspector] public ShipStateMachine stateMachine;
-    [HideInInspector] public PlayerInputControls controls;
+    
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public InputAction move;
     [HideInInspector] public InputAction fire;
@@ -20,15 +22,15 @@ public class Ship : MonoBehaviour
     {
         shooting = GetComponent<ShipShooting>();
         stateMachine = GetComponent<ShipStateMachine>();
-        controls = new PlayerInputControls();
         rigidBody = GetComponent<Rigidbody2D>();
+        controls = new PlayerInputControls();
     }
 
     private void OnEnable()
     {
-        move = controls.Player.Move;
+        move = playerNumber == 0 ? controls.Player1.Move : controls.Player2.Move;
         move.Enable();
-        fire = controls.Player.Fire;
+        fire = playerNumber == 0 ? controls.Player1.Fire : controls.Player2.Fire;
         fire.Enable();
     }
 
