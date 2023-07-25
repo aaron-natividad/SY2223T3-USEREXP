@@ -5,7 +5,13 @@ using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
-    [SerializeField] private int playerNumber;
+    public delegate void ShipDeathDelegate();
+    public ShipDeathDelegate OnShipDeath;
+
+    public int playerNumber;
+    [Space(10)]
+    [SerializeField] private GameObject deathParticlePrefab;
+    public float respawnTime;
 
     [Header("Movement Parameters")]
     public float moveSpeed;
@@ -16,6 +22,9 @@ public class Ship : MonoBehaviour
     [HideInInspector] public ShipShooting shooting;
     [HideInInspector] public ShipStateMachine stateMachine;
     [HideInInspector] public Rigidbody2D rigidBody;
+    [HideInInspector] public SpriteRenderer spriteRenderer;
+    [HideInInspector] public Collider2D collision;
+    [HideInInspector] public Canvas shipUI;
 
     // Controls
     [HideInInspector] public PlayerInputControls controls;
@@ -27,6 +36,9 @@ public class Ship : MonoBehaviour
         shooting = GetComponent<ShipShooting>();
         stateMachine = GetComponent<ShipStateMachine>();
         rigidBody = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        collision = GetComponent<Collider2D>();
+        shipUI = GetComponentInChildren<Canvas>();
         controls = new PlayerInputControls();
     }
 
@@ -42,5 +54,24 @@ public class Ship : MonoBehaviour
     {
         move.Disable();
         fire.Disable();
+    }
+
+    public void EnableShip(bool isEnabled)
+    {
+        rigidBody.simulated = isEnabled;
+        spriteRenderer.enabled = isEnabled;
+        collision.enabled = isEnabled;
+        shipUI.enabled = isEnabled;
+    }
+
+    public IEnumerator CO_OnDeath()
+    {
+        EnableShip(false);
+        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
+        OnShipDeath?.Invoke();
+        yield return new WaitForSeconds(respawnTime);
+        EnableShip(true);
+        yield return null;
+        stateMachine.SetState(stateMachine.movingState);
     }
 }

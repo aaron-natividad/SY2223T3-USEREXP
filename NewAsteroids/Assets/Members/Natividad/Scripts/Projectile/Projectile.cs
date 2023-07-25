@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private GameObject bounceParticle;
     [SerializeField] private float projectileSpeed;
 
+    [HideInInspector] public int ownerID;
     private int bounces = 0;
 
     private void Start()
@@ -15,8 +16,9 @@ public class Projectile : MonoBehaviour
         Destroy(gameObject, 5f);
     }
 
-    public void Initialize(int bounces)
+    public void Initialize(int ownerID, int bounces)
     {
+        this.ownerID = ownerID;
         this.bounces = bounces;
         rigidBody.velocity = transform.up * projectileSpeed;
     }

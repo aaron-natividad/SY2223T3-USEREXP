@@ -39,6 +39,6 @@ public class ShipShooting : MonoBehaviour
         ammo = Mathf.Max(ammo - bounces, 0);
         Instantiate(shootParticlePrefab, projectileSpawn.position, projectileSpawn.rotation);
         Projectile spawnedProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();
-        spawnedProjectile.Initialize(bounces);
+        spawnedProjectile.Initialize(ship.playerNumber, bounces);
     }
 }
