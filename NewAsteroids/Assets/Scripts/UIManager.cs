@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] private Ship targetShip;
+    /*[SerializeField] private Ship targetShip;
     [SerializeField] private TextMeshProUGUI pointsText;
     [SerializeField] private TextMeshProUGUI timerText;
 
@@ -14,5 +14,5 @@ public class UIManager : MonoBehaviour
         pointsText.text = targetShip.points.ToString("000");
 
         timerText.text = "Timer: " + ((int)GameManager.timeLimit - (int)GameManager.timer);
-    }
+    }*/
 }
