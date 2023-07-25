@@ -8,7 +8,6 @@ public class ProjectileDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Hit");
         if (collision.GetComponent<Ship>())
         {
             
@@ -20,11 +19,11 @@ public class ProjectileDetection : MonoBehaviour
                 Destroy(transform.parent.gameObject);
             }   
         }
-        /*else if (collision.GetComponent<Target>())
+        else if (collision.GetComponent<Target>())
         {
             Target target = collision.GetComponent<Target>();
             target.DoTargetBehavior();
             Destroy(transform.parent.gameObject);
-        }*/
+        }
     }
 }

@@ -36,7 +36,8 @@ public class Asteroid : Target
             Vector3 spawnPos = transform.position + relativeSpawnPos * projectileRadius;
             Vector3 spawnDirection = spawnPos - transform.position;
 
-            GameObject projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
+            Projectile projectile = Instantiate(projectilePrefab, spawnPos, Quaternion.identity).GetComponent<Projectile>();
+            projectile.Initialize(2, 1);
             projectile.transform.up = spawnDirection;
         }
     }
