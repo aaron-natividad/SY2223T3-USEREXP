@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f9dfe3864a13da2429de28b2e62796f0
+guid: af09e88252c66eb41a690dffd204a00a
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -117,13 +117,139 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ProjectileRedSheet_0
+      name: ScrapMetalTiling(32x32)_New_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c019710d0009664449e7fba2a569ac80
+      internalID: 1885739586
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9cb35df36078ba4ba9a91eb86432ea3
+      internalID: -42479434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42fb0a90ab0afee4ea64804977114d00
+      internalID: 1321724335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c7d9c50ece8e58a46b7374b4fad36562
+      internalID: 1265934129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_4
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4e0523dcbce9d6247a1b5db4b75f0a3a
+      internalID: -1703796705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_5
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 081f560f5e44e0f4190f9bdd3d0d2477
+      internalID: -916900445
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ScrapMetalTiling(32x32)_New_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 32
-        height: 80
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,20 +257,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d4953df092d46b4ea47108b807d926e
-      internalID: 2036375152
+      spriteID: 3f071d6e99bc418468b597e279e911b6
+      internalID: 1148460839
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileRedSheet_1
+      name: ScrapMetalTiling(32x32)_New_7
       rect:
         serializedVersion: 2
         x: 32
         y: 0
         width: 32
-        height: 80
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,20 +278,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c5175a7dceefba644858e463ec3bafb8
-      internalID: 1800683322
+      spriteID: f57e084b2fccd7a44ba60840a53d9c4b
+      internalID: 285939871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ProjectileRedSheet_2
+      name: ScrapMetalTiling(32x32)_New_8
       rect:
         serializedVersion: 2
         x: 64
         y: 0
         width: 32
-        height: 80
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,8 +299,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fdee94aa548ef594189d1d78ded9f8bc
-      internalID: 1885446142
+      spriteID: 77e500b18f9077e4d9b500ae1af3c63e
+      internalID: 400382179
       vertices: []
       indices: 
       edges: []
@@ -190,9 +316,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ProjectileRedSheet_0: 2036375152
-      ProjectileRedSheet_1: 1800683322
-      ProjectileRedSheet_2: 1885446142
+      ScrapMetalTiling(32x32)_New_0: 1885739586
+      ScrapMetalTiling(32x32)_New_1: -42479434
+      ScrapMetalTiling(32x32)_New_2: 1321724335
+      ScrapMetalTiling(32x32)_New_3: 1265934129
+      ScrapMetalTiling(32x32)_New_4: -1703796705
+      ScrapMetalTiling(32x32)_New_5: -916900445
+      ScrapMetalTiling(32x32)_New_6: 1148460839
+      ScrapMetalTiling(32x32)_New_7: 285939871
+      ScrapMetalTiling(32x32)_New_8: 400382179
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

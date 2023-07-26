@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 13312, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: ScrapMetalTiling(MERGED)_0
+  m_Name: ScrapMetalTiling(32x32)_New_6
   m_EditorClassIdentifier: 
-  m_Sprite: {fileID: 874713655, guid: 29f75e9958e4ebe4ba28921474df8f39, type: 3}
+  m_Sprite: {fileID: 1148460839, guid: af09e88252c66eb41a690dffd204a00a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Transform:
     e00: 1
