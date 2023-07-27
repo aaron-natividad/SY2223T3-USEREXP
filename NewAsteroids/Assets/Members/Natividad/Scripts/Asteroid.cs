@@ -10,12 +10,6 @@ public class Asteroid : Target
     public int projectileAmount;
     public float projectileRadius;
 
-    private void Start()
-    {
-        // temporary destroy just to not slow the computer
-        Destroy(gameObject, 30f);
-    }
-
     public override void DoTargetBehavior()
     {
         SpawnProjectiles();
