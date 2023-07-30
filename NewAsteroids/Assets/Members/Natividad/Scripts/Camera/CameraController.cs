@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class CameraController : MonoBehaviour
 {
+    public static CameraController instance;
+
     [SerializeField] private Camera cam;
     [Space(10)]
     [SerializeField] private float minimumScale;
@@ -15,12 +19,26 @@ public class CameraController : MonoBehaviour
     [SerializeField] private List<GameObject> targets;
 
     private Vector3 refVelocity;
+    private Vector3 baseCameraPosition;
+    private Vector3 positionOffset;
     private float refSizeVelocity;
+
+    private void Awake()
+    {
+        instance = this;
+        baseCameraPosition = transform.position;
+    }
 
     private void FixedUpdate()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, GetAveragePosition(), ref refVelocity, followSmoothTime);
+        baseCameraPosition = Vector3.SmoothDamp(baseCameraPosition, GetAveragePosition(), ref refVelocity, followSmoothTime);
+        transform.position = baseCameraPosition + positionOffset;
         cam.orthographicSize = Mathf.SmoothDamp(cam.orthographicSize, GetMaxDistanceBetweenTargets(), ref refSizeVelocity, zoomSmoothTime);
+    }
+
+    public void Shake(float magnitude, float time, float interval)
+    {
+        StartCoroutine(CO_Shake(magnitude, time, interval));
     }
 
     public float GetMaxDistanceBetweenTargets()
@@ -58,5 +76,23 @@ public class CameraController : MonoBehaviour
         averagePosition = new Vector3(posX, posY, transform.position.z);
 
         return averagePosition;
+    }
+
+    private IEnumerator CO_Shake(float magnitude, float time, float interval)
+    {
+        float shakeX;
+        float shakeY;
+        float timer = time;
+
+        while (timer > 0)
+        {
+            shakeX = Random.Range(-magnitude, magnitude);
+            shakeY = Random.Range(-magnitude, magnitude);
+            positionOffset = new Vector3(shakeX, shakeY, 0);
+            timer -= interval;
+            yield return new WaitForSeconds(interval);
+        }
+
+        positionOffset = Vector3.zero;
     }
 }

@@ -56,6 +56,18 @@ public class Ship : MonoBehaviour
         fire.Disable();
     }
 
+    public void SetPlayerNumber(int number)
+    {
+        move.Disable();
+        fire.Disable();
+        playerNumber = number;
+
+        move = playerNumber == 0 ? controls.Player1.Move : controls.Player2.Move;
+        move.Enable();
+        fire = playerNumber == 0 ? controls.Player1.Fire : controls.Player2.Fire;
+        fire.Enable();
+    }
+
     public void EnableShip(bool isEnabled)
     {
         rigidBody.simulated = isEnabled;
