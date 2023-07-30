@@ -11,12 +11,14 @@ public class MenuManager : MonoBehaviour
     int SelectedLevel;
     TMP_Dropdown StageSelector;
     public GameObject SettingsMenu;
+    public GameObject CharacterSelectionPanel;
 
     void Start()
     {   
         StageSelector = FindObjectOfType<TMP_Dropdown>();
         isDuo = false;   
         SettingsMenu.SetActive(false);
+        CharacterSelectionPanel.SetActive(false);
     }
 
     void Update()
@@ -26,24 +28,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGame()
     {
-        switch(SelectedLevel)
-        {
-            case 0:
-            SceneManager.LoadScene("TutorialScene");
-            break;
-
-            case 1:
-            SceneManager.LoadScene("Stage01Scene");
-            break;
-
-            case 2:
-            SceneManager.LoadScene("Stage02Scene");
-            break;
-
-            case 3:
-            SceneManager.LoadScene("Stage03Scene");
-            break;
-        }
+        CharacterSelectionPanel.SetActive(true);
     }
 
     public void QuitGame()

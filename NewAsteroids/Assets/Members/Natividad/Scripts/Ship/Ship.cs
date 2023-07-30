@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
+    public string shipName;
     public delegate void ShipDeathDelegate();
     public ShipDeathDelegate OnShipDeath;
 
@@ -85,5 +86,11 @@ public class Ship : MonoBehaviour
         EnableShip(true);
         yield return null;
         stateMachine.SetState(stateMachine.movingState);
+    }
+
+    public void SetMoveSpeed(float value)
+    {
+        moveSpeed += value;
+        moveAcceleration += value;
     }
 }

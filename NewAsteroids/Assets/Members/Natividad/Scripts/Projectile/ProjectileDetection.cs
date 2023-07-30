@@ -10,7 +10,6 @@ public class ProjectileDetection : MonoBehaviour
     {
         if (collision.GetComponent<Ship>())
         {
-            
             Ship ship = collision.GetComponent<Ship>();
 
             if (ship.playerNumber != projectile.ownerID)
@@ -23,6 +22,13 @@ public class ProjectileDetection : MonoBehaviour
         {
             Target target = collision.GetComponent<Target>();
             target.DoTargetBehavior();
+            Destroy(transform.parent.gameObject);
+        }
+
+        else if (collision.CompareTag("AsteroidStageSelect"))
+        {
+            AsteroidStageSelect asteroid = collision.GetComponent<AsteroidStageSelect>();
+            asteroid.DoTargetBehavior();
             Destroy(transform.parent.gameObject);
         }
     }
