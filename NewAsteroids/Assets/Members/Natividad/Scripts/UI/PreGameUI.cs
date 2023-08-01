@@ -7,12 +7,18 @@ using UnityEngine.UI;
 public class PreGameUI : MonoBehaviour
 {
     [SerializeField] private GameObject[] panels;
+    [SerializeField] private TextMeshProUGUI winnerMessage;
     [SerializeField] private TextMeshProUGUI countdown;
     private Canvas canvas;
 
     private void Awake()
     {
         canvas = GetComponent<Canvas>();
+    }
+
+    public void SetWinnerMessage(string message)
+    {
+        winnerMessage.text = message;
     }
 
     public void SetEnabled(bool isEnabled)

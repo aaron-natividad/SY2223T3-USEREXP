@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4055153181541749199}
   - component: {fileID: -3093634981005815594}
   m_Layer: 6
-  m_Name: Ship Projectile
+  m_Name: Ship Projectile Red
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 8fdad5964278a8240b7e0c2e08dee51b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fb557e0251f23f4db48b768c5e8d03d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,16 +6,26 @@ using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
+    public static event Action<int> OnLivesDepleted;
+    public event Action<int> OnShipDeath;
+
+    [Header("Ship Info")]
     public string shipName;
-    public delegate void ShipDeathDelegate();
-    public ShipDeathDelegate OnShipDeath;
-
     public int playerNumber;
-    [Space(10)]
-    [SerializeField] private GameObject deathParticlePrefab;
-    public float respawnTime;
 
-    [Header("Movement Parameters")]
+    [Header("Ship Sprite")]
+    public GameObject spriteParent;
+    public SpriteRenderer baseSprite;
+    public SpriteRenderer colorSprite;
+    public SpriteRenderer outlineSprite;
+    public SpriteRenderer thrusterSprite;
+
+    [Header("Health")]
+    public int lives;
+    public float respawnTime;
+    [SerializeField] private GameObject deathParticlePrefab;
+    
+    [Header("Movement")]
     public float moveSpeed;
     public float moveAcceleration;
     [Range(0f, 1f)] public float rotateTime;
@@ -23,7 +34,6 @@ public class Ship : MonoBehaviour
     [HideInInspector] public ShipShooting shooting;
     [HideInInspector] public ShipStateMachine stateMachine;
     [HideInInspector] public Rigidbody2D rigidBody;
-    [HideInInspector] public SpriteRenderer spriteRenderer;
     [HideInInspector] public Collider2D collision;
     [HideInInspector] public Canvas shipUI;
 
@@ -37,7 +47,6 @@ public class Ship : MonoBehaviour
         shooting = GetComponent<ShipShooting>();
         stateMachine = GetComponent<ShipStateMachine>();
         rigidBody = GetComponent<Rigidbody2D>();
-        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         collision = GetComponent<Collider2D>();
         shipUI = GetComponentInChildren<Canvas>();
         controls = new PlayerInputControls();
@@ -72,20 +81,29 @@ public class Ship : MonoBehaviour
     public void EnableShip(bool isEnabled)
     {
         rigidBody.simulated = isEnabled;
-        spriteRenderer.enabled = isEnabled;
         collision.enabled = isEnabled;
         shipUI.enabled = isEnabled;
+        spriteParent.SetActive(isEnabled);
     }
 
     public IEnumerator CO_OnDeath()
     {
         EnableShip(false);
+        lives--;
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
-        OnShipDeath?.Invoke();
-        yield return new WaitForSeconds(respawnTime);
-        EnableShip(true);
-        yield return null;
-        stateMachine.SetState(stateMachine.movingState);
+
+        OnShipDeath?.Invoke(playerNumber);
+        if (lives <= 0)
+        {
+            OnLivesDepleted?.Invoke(playerNumber);
+        }
+        else
+        {
+            yield return new WaitForSeconds(respawnTime);
+            EnableShip(true);
+            yield return null;
+            stateMachine.SetState(stateMachine.movingState);
+        }
     }
 
     public void SetMoveSpeed(float value)

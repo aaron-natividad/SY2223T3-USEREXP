@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Bomb
+  m_Name: ThrusterOrange
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: -1576228430, guid: e70894d739297b748822f1a43b48b537, type: 3}
+      value: {fileID: -897478356, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
     - time: 0.083333336
-      value: {fileID: 639879021, guid: e70894d739297b748822f1a43b48b537, type: 3}
+      value: {fileID: 140177490, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
     - time: 0.16666667
-      value: {fileID: 1751767277, guid: e70894d739297b748822f1a43b48b537, type: 3}
-    - time: 0.25
-      value: {fileID: 1992817546, guid: e70894d739297b748822f1a43b48b537, type: 3}
+      value: {fileID: 1376942067, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: -1576228430, guid: e70894d739297b748822f1a43b48b537, type: 3}
-    - {fileID: 639879021, guid: e70894d739297b748822f1a43b48b537, type: 3}
-    - {fileID: 1751767277, guid: e70894d739297b748822f1a43b48b537, type: 3}
-    - {fileID: 1992817546, guid: e70894d739297b748822f1a43b48b537, type: 3}
+    - {fileID: -897478356, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
+    - {fileID: 140177490, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
+    - {fileID: 1376942067, guid: d1391641ad2346c4abf13e2bfe4fee0a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

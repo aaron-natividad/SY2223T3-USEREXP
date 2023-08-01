@@ -8,6 +8,7 @@ public class ShipStateMachine : MonoBehaviour
     [HideInInspector] public MovingState movingState;
     [HideInInspector] public ShootingState shootingState;
     [HideInInspector] public DeathState deathState;
+    [HideInInspector] public DisabledState disabledState;
 
     private Ship ship;
 
@@ -17,6 +18,7 @@ public class ShipStateMachine : MonoBehaviour
         movingState = new MovingState(ship);
         shootingState = new ShootingState(ship);
         deathState = new DeathState(ship);
+        disabledState = new DisabledState(ship);
         SetState(movingState);
     }
 

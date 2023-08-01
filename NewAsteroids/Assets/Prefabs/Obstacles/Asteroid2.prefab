@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 1537058467672230990}
   - component: {fileID: 1537058467672230989}
   - component: {fileID: 1537058467672230988}
-  - component: {fileID: 8386156607072685378}
-  - component: {fileID: 8013706100133742248}
+  - component: {fileID: 1537058467672230987}
   m_Layer: 8
-  m_Name: Bomb
+  m_Name: Asteroid2
   m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,12 +76,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -1595263067, guid: 1c5beadacf2636f448e19584b1c75167, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6aa68c6db2f9c0149b6918bfa389941b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4.051282, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -125,28 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!95 &8386156607072685378
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1537058467672230986}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 74909620b303e0b479e333e51d6181c4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &8013706100133742248
+--- !u!114 &1537058467672230987
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,11 +133,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1537058467672230986}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4e0f63f0ca5f3b468295ced3926838e, type: 3}
+  m_Script: {fileID: 11500000, guid: c26ef826ddc592847a9a229d017650a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyMask:
-    serializedVersion: 2
-    m_Bits: 128
-  explosionParticlePrefab: {fileID: 1537058467672230986, guid: c200913875ab54f4dae99e1bca7bab3b, type: 3}
-  explosionRadius: 5
+  projectilePrefab: {fileID: 4051360557861466086, guid: 0182a2b16958aea44976cc495a1755d8, type: 3}
+  projectileAmount: 5
+  projectileRadius: 0.1
