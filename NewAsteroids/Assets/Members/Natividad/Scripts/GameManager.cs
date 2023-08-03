@@ -2,14 +2,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    [SerializeField] private SelectionControls selectionControls;
     [Header("UI")]
     [SerializeField] private PreGameUI preGameUI;
     [SerializeField] private GameUI gameUI;
+    [SerializeField] private CoverUI coverUI;
 
     [Header("Spawners")]
     public ShipSpawner shipSpawner;
@@ -37,6 +40,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        selectionControls.enabled = false;
         countdownSeconds = 3;
         timeLimitSeconds = 120;
         foreach (Ship ship in ships)
@@ -74,9 +78,22 @@ public class GameManager : MonoBehaviour
                 break;
         }
         
+        selectionControls.enabled = true;
         preGameUI.SetEnabled(true);
         preGameUI.ActivatePanel("EndGamePanel");
         gameUI.SetEnabled(false);
+    }
+
+    public void LoadScene(string sceneName)
+    {
+        StartCoroutine(CO_LoadScene(sceneName));
+    }
+
+    private IEnumerator CO_LoadScene(string sceneName)
+    {
+        coverUI.FadeCover(true, 0.5f);
+        yield return new WaitForSeconds(0.5f);
+        SceneManager.LoadScene(sceneName);
     }
 
     private void EnableShips(bool isEnabled)
@@ -102,6 +119,7 @@ public class GameManager : MonoBehaviour
     {
         yield return null;
         EnableShips(false);
+        coverUI.FadeCover(false, 0.5f);
         preGameUI.SetEnabled(true);
         preGameUI.ActivatePanel("CountdownPanel");
         gameUI.SetEnabled(false);

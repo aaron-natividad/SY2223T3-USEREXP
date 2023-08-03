@@ -4,12 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum AssignedPlayer
-{
-    Player1 = 0,
-    Player2 = 1
-}
-
 public class Ship : MonoBehaviour
 {
     public static event Action<int> OnLivesDepleted;

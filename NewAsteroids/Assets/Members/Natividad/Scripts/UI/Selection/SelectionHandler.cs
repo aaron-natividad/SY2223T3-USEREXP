@@ -25,9 +25,9 @@ public class SelectionHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        navigate = controls.UI.Navigate;
+        navigate = controls.GenericUI.Navigate;
         navigate.Enable();
-        submit = controls.UI.Submit;
+        submit = controls.GenericUI.Submit;
         submit.Enable();
     }
 
