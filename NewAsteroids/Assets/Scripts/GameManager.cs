@@ -1,18 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    [Header("UI")]
     [SerializeField] private PreGameUI preGameUI;
     [SerializeField] private GameUI gameUI;
-    [Space(10)]
-    [SerializeField] private Ship[] ships;
-    [Space(10)]
-    [SerializeField] private int countdownSeconds = 3;
-    [SerializeField] private int timeLimitSeconds = 120;
 
+    [Header("Spawners")]
+    public ShipSpawner shipSpawner;
+    public ItemSpawner itemSpawner;
+
+    public List<Ship> ships = new List<Ship>();
+    private int countdownSeconds;
+    private int timeLimitSeconds;
     private int remainingTimeSeconds;
 
     private void OnEnable()
@@ -25,13 +30,20 @@ public class GameManager : MonoBehaviour
         Ship.OnLivesDepleted -= EndGame;
     }
 
+    private void Awake()
+    {
+        instance = this;
+    }
+
     private void Start()
     {
-        StartCoroutine(CO_StartCountdown());
+        countdownSeconds = 3;
+        timeLimitSeconds = 120;
         foreach (Ship ship in ships)
         {
             gameUI.SetPlayerInfo(ship);
         }
+        StartCoroutine(CO_StartCountdown());
     }
 
     public void CheckWinner()
@@ -46,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame(int losingPlayer)
     {
+        itemSpawner.DisableSpawning();
         EnableShips(false);
 
         switch (losingPlayer)
@@ -87,6 +100,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CO_StartCountdown()
     {
+        yield return null;
         EnableShips(false);
         preGameUI.SetEnabled(true);
         preGameUI.ActivatePanel("CountdownPanel");
@@ -109,6 +123,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator CO_RunTimer()
     {
+        itemSpawner.EnableSpawning();
         remainingTimeSeconds = timeLimitSeconds;
 
         while (remainingTimeSeconds > 0)

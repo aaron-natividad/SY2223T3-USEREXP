@@ -15,9 +15,8 @@ public class CameraController : MonoBehaviour
     [Space(10)]
     [SerializeField] private float followSmoothTime;
     [SerializeField] private float zoomSmoothTime;
-    [Space(10)]
-    [SerializeField] private List<GameObject> targets;
 
+    private List<Ship> targets;
     private Vector3 refVelocity;
     private Vector3 baseCameraPosition;
     private Vector3 positionOffset;
@@ -43,6 +42,7 @@ public class CameraController : MonoBehaviour
 
     public float GetMaxDistanceBetweenTargets()
     {
+        targets = GameManager.instance.ships;
         float distance = 0;
         if (targets.Count < 2) return minimumScale;
         
@@ -61,11 +61,12 @@ public class CameraController : MonoBehaviour
 
     public Vector3 GetAveragePosition()
     {
+        targets = GameManager.instance.ships;
         Vector3 averagePosition;
         float posX = 0;
         float posY = 0;
 
-        foreach (GameObject target in targets)
+        foreach (Ship target in targets)
         {
             posX += target.transform.position.x;
             posY += target.transform.position.y;

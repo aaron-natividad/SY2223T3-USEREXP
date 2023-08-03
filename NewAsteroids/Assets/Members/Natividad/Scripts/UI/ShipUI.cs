@@ -1,19 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShipUI : MonoBehaviour
 {
     [SerializeField] private ShipShooting shooting;
-    [SerializeField] Image[] ammoBoxes;
-    [SerializeField] Color activeColor;
-    [SerializeField] Color inactiveColor;
+
+    [SerializeField] private TextMeshProUGUI playerNumber;
+    [SerializeField] private Image[] ammoBoxes;
+    [SerializeField] private Color activeColor;
+    [SerializeField] private Color inactiveColor;
 
     private void Update()
     {
         UpdateAmmoBoxes();
         transform.up = Vector2.up;
+    }
+
+    public void SetPlayerNumber(AssignedPlayer assignedPlayer)
+    {
+        playerNumber.text = "P" + ((int)assignedPlayer + 1);
     }
 
     private void UpdateAmmoBoxes()

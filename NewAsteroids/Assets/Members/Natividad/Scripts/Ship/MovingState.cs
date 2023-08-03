@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovingState : ShipState
 {
@@ -16,15 +17,21 @@ public class MovingState : ShipState
 
     public override void OnUpdate()
     {
-        if (ship.fire.IsPressed() && ship.shooting.ammo > 0) stateMachine.SetState(stateMachine.shootingState);
+        if (ship.fireAction.IsPressed() && ship.shooting.ammo > 0) stateMachine.SetState(stateMachine.shootingState);
 
-        if (ship.move.ReadValue<Vector2>() == Vector2.zero)
+        if (ship.specialAction.phase == InputActionPhase.Performed && ship.special.canActivate)
+        {
+            ship.special.Activate();
+            ship.special.SetCanActivate(false);
+        }
+
+        if (ship.moveAction.ReadValue<Vector2>() == Vector2.zero)
         {
             ship.thrusterSprite.enabled = false;
             return;
         }
 
-        Vector2 moveDirection = ship.move.ReadValue<Vector2>();
+        Vector2 moveDirection = ship.moveAction.ReadValue<Vector2>();
         float moveAngle = Vector2.SignedAngle(Vector2.up, moveDirection);
         float toAngle = Mathf.SmoothDampAngle(ship.transform.eulerAngles.z, moveAngle, ref rotateVelocity, 0.1f);
         ship.transform.rotation = Quaternion.Euler(0, 0, toAngle);

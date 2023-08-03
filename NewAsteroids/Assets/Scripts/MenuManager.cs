@@ -15,7 +15,7 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {   
-        StageSelector = FindObjectOfType<TMP_Dropdown>();
+        //StageSelector = FindObjectOfType<TMP_Dropdown>();
         isDuo = false;   
         SettingsMenu.SetActive(false);
         CharacterSelectionPanel.SetActive(false);
@@ -23,7 +23,7 @@ public class MenuManager : MonoBehaviour
 
     void Update()
     {
-        SelectedLevel = StageSelector.value;
+        //SelectedLevel = StageSelector.value;
     }
 
     public void StartGame()

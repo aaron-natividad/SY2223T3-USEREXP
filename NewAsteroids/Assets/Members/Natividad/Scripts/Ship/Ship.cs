@@ -4,6 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum AssignedPlayer
+{
+    Player1 = 0,
+    Player2 = 1
+}
+
 public class Ship : MonoBehaviour
 {
     public static event Action<int> OnLivesDepleted;
@@ -11,7 +17,7 @@ public class Ship : MonoBehaviour
 
     [Header("Ship Info")]
     public string shipName;
-    public int playerNumber;
+    public AssignedPlayer assignedPlayer;
 
     [Header("Ship Sprite")]
     public GameObject spriteParent;
@@ -33,49 +39,52 @@ public class Ship : MonoBehaviour
     // Components
     [HideInInspector] public ShipShooting shooting;
     [HideInInspector] public ShipStateMachine stateMachine;
+    [HideInInspector] public ShipSpecial special;
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public Collider2D collision;
-    [HideInInspector] public Canvas shipUI;
+    [HideInInspector] public ShipUI shipUI;
 
     // Controls
     [HideInInspector] public PlayerInputControls controls;
-    [HideInInspector] public InputAction move;
-    [HideInInspector] public InputAction fire;
+    [HideInInspector] public InputAction moveAction;
+    [HideInInspector] public InputAction fireAction;
+    [HideInInspector] public InputAction specialAction;
 
     private void Awake()
     {
         shooting = GetComponent<ShipShooting>();
         stateMachine = GetComponent<ShipStateMachine>();
+        special = GetComponent<ShipSpecial>();
         rigidBody = GetComponent<Rigidbody2D>();
         collision = GetComponent<Collider2D>();
-        shipUI = GetComponentInChildren<Canvas>();
+        shipUI = GetComponentInChildren<ShipUI>();
         controls = new PlayerInputControls();
     }
 
     private void OnEnable()
     {
-        move = playerNumber == 0 ? controls.Player1.Move : controls.Player2.Move;
-        move.Enable();
-        fire = playerNumber == 0 ? controls.Player1.Fire : controls.Player2.Fire;
-        fire.Enable();
+        SetControls((int)assignedPlayer);
+        EnableControls();
     }
 
     private void OnDisable()
     {
-        move.Disable();
-        fire.Disable();
+        DisableControls();
     }
 
-    public void SetPlayerNumber(int number)
+    public void SetStyle(Color color, GameObject projectile)
     {
-        move.Disable();
-        fire.Disable();
-        playerNumber = number;
+        colorSprite.color = color;
+        shooting.projectilePrefab = projectile;
+    }
 
-        move = playerNumber == 0 ? controls.Player1.Move : controls.Player2.Move;
-        move.Enable();
-        fire = playerNumber == 0 ? controls.Player1.Fire : controls.Player2.Fire;
-        fire.Enable();
+    public void SetPlayer(AssignedPlayer assignedPlayer)
+    {
+        DisableControls();
+        this.assignedPlayer = assignedPlayer;
+        SetControls((int)assignedPlayer);
+        shipUI.SetPlayerNumber(assignedPlayer);
+        EnableControls();
     }
 
     public void EnableShip(bool isEnabled)
@@ -92,10 +101,10 @@ public class Ship : MonoBehaviour
         lives--;
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
 
-        OnShipDeath?.Invoke(playerNumber);
+        OnShipDeath?.Invoke((int)assignedPlayer);
         if (lives <= 0)
         {
-            OnLivesDepleted?.Invoke(playerNumber);
+            OnLivesDepleted?.Invoke((int)assignedPlayer);
         }
         else
         {
@@ -110,5 +119,26 @@ public class Ship : MonoBehaviour
     {
         moveSpeed += value;
         moveAcceleration += value;
+    }
+
+    private void EnableControls()
+    {
+        moveAction.Enable();
+        fireAction.Enable();
+        specialAction.Enable();
+    }
+
+    private void DisableControls()
+    {
+        moveAction.Disable();
+        fireAction.Disable();
+        specialAction.Disable();
+    }
+
+    private void SetControls(int shipID)
+    {
+        moveAction = shipID == 0 ? controls.Player1.Move : controls.Player2.Move;
+        fireAction = shipID == 0 ? controls.Player1.Fire : controls.Player2.Fire;
+        specialAction = shipID == 0 ? controls.Player1.Special : controls.Player2.Special;
     }
 }

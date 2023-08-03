@@ -12,7 +12,7 @@ public class ProjectileDetection : MonoBehaviour
         {
             Ship ship = collision.GetComponent<Ship>();
 
-            if (ship.playerNumber != projectile.ownerID)
+            if ((int)ship.assignedPlayer != projectile.ownerID)
             {
                 ship.stateMachine.SetState(ship.stateMachine.deathState);
                 Destroy(transform.parent.gameObject);

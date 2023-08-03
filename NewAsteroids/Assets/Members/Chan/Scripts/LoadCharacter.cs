@@ -22,12 +22,12 @@ public class LoadCharacter : MonoBehaviour
         Ship player1 = clone1.GetComponent<Ship>();
         Ship player2 = clone2.GetComponent<Ship>();
 
-        Test(player1, 0);
-        Test(player2, 1);
+        Test(player1, AssignedPlayer.Player1);
+        Test(player2, AssignedPlayer.Player2);
     }
 
-    void Test(Ship player, int playerNumber)
+    void Test(Ship player, AssignedPlayer assignedPlayer)
     {
-        player.playerNumber = playerNumber;
+        player.assignedPlayer = assignedPlayer;
     }
 }

@@ -24,11 +24,11 @@ public class ShootingState : ShipState
 
     public override void OnUpdate()
     {
-        if (!ship.fire.IsPressed()) stateMachine.SetState(stateMachine.movingState);
+        if (!ship.fireAction.IsPressed()) stateMachine.SetState(stateMachine.movingState);
 
-        if(ship.move.ReadValue<Vector2>() != Vector2.zero)
+        if(ship.moveAction.ReadValue<Vector2>() != Vector2.zero)
         {
-            Vector2 moveDirection = ship.move.ReadValue<Vector2>();
+            Vector2 moveDirection = ship.moveAction.ReadValue<Vector2>();
             float moveAngle = Vector2.SignedAngle(Vector2.up, moveDirection);
             float toAngle = Mathf.SmoothDampAngle(ship.transform.eulerAngles.z, moveAngle, ref rotateVelocity, 0.1f);
             ship.transform.rotation = Quaternion.Euler(0, 0, toAngle);
