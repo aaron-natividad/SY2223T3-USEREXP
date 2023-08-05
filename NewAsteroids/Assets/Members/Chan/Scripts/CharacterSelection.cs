@@ -40,7 +40,7 @@ public class CharacterSelection : MonoBehaviour
     {
         if(isPlayer2Selecting) {
             PlayerPrefs.SetInt("secondCharacter", selectedCharacter);
-            SceneManager.LoadScene("TutorialScene");
+            SceneManager.LoadScene("StageSelect");
         }
         else {
             PlayerSelectionText.text = "Player 2";
