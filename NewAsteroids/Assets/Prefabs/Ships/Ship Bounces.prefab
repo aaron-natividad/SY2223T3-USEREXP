@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7057879301748715444}
+  - component: {fileID: 7465547086174105876}
   m_Layer: 7
   m_Name: Sprite Parent
   m_TagString: Untagged
@@ -35,6 +36,23 @@ Transform:
   m_Father: {fileID: 7999014743720670060}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7465547086174105876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5260837971891212746}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d8749423ad8fd41b8b388b9bd9b87b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteParent: {fileID: 5260837971891212746}
+  baseSprite: {fileID: 7999014743541117143}
+  colorSprite: {fileID: 7999014742151415255}
+  outlineSprite: {fileID: 7999014744145056429}
+  thrusterSprite: {fileID: 6492755122055725560}
 --- !u!1 &6373732553225187624
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,6 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7999014743720670060}
   - component: {fileID: 7999014743720670048}
+  - component: {fileID: 7640951086746020789}
   - component: {fileID: 7999014743720670049}
   - component: {fileID: 7999014743720670051}
   - component: {fileID: 1158780440775023002}
@@ -843,23 +862,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipName: Default
   assignedPlayer: 0
-  spriteParent: {fileID: 5260837971891212746}
-  baseSprite: {fileID: 7999014743541117143}
-  colorSprite: {fileID: 7999014742151415255}
-  outlineSprite: {fileID: 7999014744145056429}
-  thrusterSprite: {fileID: 6492755122055725560}
-  lives: 3
-  respawnTime: 1
-  deathParticlePrefab: {fileID: 6226981086072599009, guid: a1dddc341faeb8449b6a125a71a59bd6, type: 3}
   moveSpeed: 5
   moveAcceleration: 5
   rotateTime: 0.1
+  health: {fileID: 0}
   shooting: {fileID: 0}
-  stateMachine: {fileID: 0}
   special: {fileID: 0}
+  stateMachine: {fileID: 0}
+  shipUI: {fileID: 0}
+  shipSprite: {fileID: 0}
   rigidBody: {fileID: 0}
   collision: {fileID: 0}
-  shipUI: {fileID: 0}
   moveAction:
     m_Name: 
     m_Type: 0
@@ -887,6 +900,23 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+--- !u!114 &7640951086746020789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7999014743720670063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01fb36e02e013ac4ea594bfd57fe25a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ship: {fileID: 7999014743720670048}
+  deathParticlePrefab: {fileID: 6226981086072599009, guid: a1dddc341faeb8449b6a125a71a59bd6, type: 3}
+  lives: 3
+  respawnTime: 1
+  infiniteLives: 0
 --- !u!114 &7999014743720670049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -908,6 +938,7 @@ MonoBehaviour:
   ammoRegenInterval: 0.5
   recoilPerBounce: 10
   extraBounces: 0
+  canShoot: 1
   projectilePrefab: {fileID: 4051360557861466086, guid: ff938f818e3be974b90a880dac66b227, type: 3}
 --- !u!114 &7999014743720670051
 MonoBehaviour:

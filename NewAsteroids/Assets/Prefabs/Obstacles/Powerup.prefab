@@ -98,6 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0be00552151f5b4394f7381093f29d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 5884469341914212817}
+  col: {fileID: 5884469341914212819}
+  respawnable: 0
+  respawnTime: 3
 --- !u!58 &5884469341914212819
 CircleCollider2D:
   m_ObjectHideFlags: 0

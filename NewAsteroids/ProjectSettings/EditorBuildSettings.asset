@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Members/Natividad/Scenes/StageSelect.unity
+    guid: 0c03dc1bde70dc54295368fe28eee40d
+  - enabled: 1
     path: Assets/Members/Natividad/Scenes/MultiplayerScene.unity
     guid: a67415605a7f9e941a2ab087881d8f99
   - enabled: 1

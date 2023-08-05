@@ -367,6 +367,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &620582290 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6228915666895310516, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+  m_PrefabInstance: {fileID: 7524187334892467118}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c36d1aa7c3d850408e8039cf936f59a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &800959938
 GameObject:
   m_ObjectHideFlags: 0
@@ -23043,8 +23054,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cam: {fileID: 1576647583}
+  spawner: {fileID: 620582290}
   minimumScale: 5
   maximumScale: 10
+  scaleOffset: 0
   followSmoothTime: 0.2
   zoomSmoothTime: 0.5
 --- !u!1 &1647035107
@@ -23438,6 +23451,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 912576417}
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: BaseManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: StageSelect
+      objectReference: {fileID: 0}
+    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
+      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2465187204685516258, guid: 28b24660fae7bf84784758b37510a500, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.5

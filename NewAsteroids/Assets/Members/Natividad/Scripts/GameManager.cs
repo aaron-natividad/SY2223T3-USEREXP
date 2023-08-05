@@ -2,59 +2,44 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : BaseManager
 {
-    public static GameManager instance;
-
-    [SerializeField] private SelectionControls selectionControls;
     [Header("UI")]
-    [SerializeField] private PreGameUI preGameUI;
-    [SerializeField] private GameUI gameUI;
-    [SerializeField] private CoverUI coverUI;
+    public PreGameUI preGameUI;
+    public GameUI gameUI;
 
     [Header("Spawners")]
     public ShipSpawner shipSpawner;
     public ItemSpawner itemSpawner;
 
-    public List<Ship> ships = new List<Ship>();
-    private int countdownSeconds;
-    private int timeLimitSeconds;
+    [Header("Timers")]
+    [SerializeField] private int countdownSeconds;
+    [SerializeField] private int timeLimitSeconds;
     private int remainingTimeSeconds;
 
     private void OnEnable()
     {
-        Ship.OnLivesDepleted += EndGame;
+        ShipHealth.OnLivesDepleted += EndGame;
     }
 
     private void OnDisable()
     {
-        Ship.OnLivesDepleted -= EndGame;
-    }
-
-    private void Awake()
-    {
-        instance = this;
+        ShipHealth.OnLivesDepleted -= EndGame;
     }
 
     private void Start()
     {
         selectionControls.enabled = false;
-        countdownSeconds = 3;
-        timeLimitSeconds = 120;
-        foreach (Ship ship in ships)
-        {
-            gameUI.SetPlayerInfo(ship);
-        }
+        
         StartCoroutine(CO_StartCountdown());
     }
 
     public void CheckWinner()
     {
-        if (ships[0].lives > ships[1].lives)
+        if (shipSpawner.ships[0].health.GetLives() > shipSpawner.ships[1].health.GetLives())
             EndGame(1);
-        else if (ships[0].lives < ships[1].lives)
+        else if (shipSpawner.ships[0].health.GetLives() < shipSpawner.ships[1].health.GetLives())
             EndGame(0);
         else
             EndGame(2);
@@ -63,6 +48,7 @@ public class GameManager : MonoBehaviour
     public void EndGame(int losingPlayer)
     {
         itemSpawner.DisableSpawning();
+        StopAllCoroutines();
         EnableShips(false);
 
         switch (losingPlayer)
@@ -79,26 +65,12 @@ public class GameManager : MonoBehaviour
         }
         
         selectionControls.enabled = true;
-        preGameUI.SetEnabled(true);
         preGameUI.ActivatePanel("EndGamePanel");
-        gameUI.SetEnabled(false);
-    }
-
-    public void LoadScene(string sceneName)
-    {
-        StartCoroutine(CO_LoadScene(sceneName));
-    }
-
-    private IEnumerator CO_LoadScene(string sceneName)
-    {
-        coverUI.FadeCover(true, 0.5f);
-        yield return new WaitForSeconds(0.5f);
-        SceneManager.LoadScene(sceneName);
     }
 
     private void EnableShips(bool isEnabled)
     {
-        foreach (Ship ship in ships)
+        foreach (Ship ship in shipSpawner.ships)
         {
             if (isEnabled)
                 ship.stateMachine.SetState(ship.stateMachine.movingState);
@@ -119,13 +91,14 @@ public class GameManager : MonoBehaviour
     {
         yield return null;
         EnableShips(false);
-        coverUI.FadeCover(false, 0.5f);
-        preGameUI.SetEnabled(true);
+        cover.FadeCover(false, 0.5f);
         preGameUI.ActivatePanel("CountdownPanel");
-        gameUI.SetEnabled(false);
         yield return new WaitForSeconds(1f); // Delay
 
-        for(int i = countdownSeconds; i > 0; i--)
+        foreach (Ship ship in shipSpawner.ships)
+            gameUI.SetPlayerInfo(ship);
+
+        for (int i = countdownSeconds; i > 0; i--)
         {
             preGameUI.SetCountdown(i);
             yield return new WaitForSeconds(1f);
@@ -133,8 +106,7 @@ public class GameManager : MonoBehaviour
         preGameUI.SetCountdown("Start!");
         yield return new WaitForSeconds(1f);
 
-        preGameUI.SetEnabled(false);
-        gameUI.SetEnabled(true);
+        gameUI.Activate();
         EnableShips(true);
         StartCoroutine(CO_RunTimer());
     }

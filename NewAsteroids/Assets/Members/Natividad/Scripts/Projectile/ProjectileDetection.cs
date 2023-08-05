@@ -24,12 +24,5 @@ public class ProjectileDetection : MonoBehaviour
             target.DoTargetBehavior();
             Destroy(transform.parent.gameObject);
         }
-
-        else if (collision.CompareTag("AsteroidStageSelect"))
-        {
-            AsteroidStageSelect asteroid = collision.GetComponent<AsteroidStageSelect>();
-            asteroid.DoTargetBehavior();
-            Destroy(transform.parent.gameObject);
-        }
     }
 }

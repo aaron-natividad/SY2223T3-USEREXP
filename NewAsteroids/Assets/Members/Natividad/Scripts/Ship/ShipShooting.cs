@@ -18,6 +18,9 @@ public class ShipShooting : MonoBehaviour
     public float recoilPerBounce;
     public int extraBounces =  0;
 
+    [Header("Debug")]
+    public bool canShoot;
+
     [HideInInspector] public GameObject projectilePrefab;
     private float ammoRegenTimer = 0;
     
@@ -39,6 +42,8 @@ public class ShipShooting : MonoBehaviour
 
     public void SpawnProjectile(int bounces)
     {
+        if (!canShoot) return;
+
         ammo = Mathf.Max(ammo - bounces, 0);
         Instantiate(shootParticlePrefab, projectileSpawn.position, projectileSpawn.rotation);
         Projectile spawnedProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();

@@ -20,18 +20,16 @@ public class PlayerInfoUI : MonoBehaviour
     [SerializeField] private Color activeColor;
 
     private List<GameObject> heartImages = new List<GameObject>();
-
     public void SetPlayerInfo(Ship ship)
     {
-        //playerName.text = ship.shipName;
         specialIcon.sprite = ship.special.specialIcon;
-        for (int i = 0; i < ship.lives; i++)
+        for (int i = 0; i < ship.health.GetLives(); i++)
         {
             GameObject hImage = Instantiate(heartImagePrefab, heartContainer);
             heartImages.Add(hImage);
         }
         ship.special.OnCanActivateChanged += SetSpecialUIActivated;
-        ship.OnShipDeath += RemoveLifeUI;
+        ship.health.OnShipDeath += RemoveLifeUI;
     }
 
     public void SetSpecialUIActivated(bool isActivated, int playerNumber)

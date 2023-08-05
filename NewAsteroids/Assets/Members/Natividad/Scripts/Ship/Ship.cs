@@ -6,37 +6,26 @@ using UnityEngine.InputSystem;
 
 public class Ship : MonoBehaviour
 {
-    public static event Action<int> OnLivesDepleted;
-    public event Action<int> OnShipDeath;
-
     [Header("Ship Info")]
     public string shipName;
     public AssignedPlayer assignedPlayer;
 
-    [Header("Ship Sprite")]
-    public GameObject spriteParent;
-    public SpriteRenderer baseSprite;
-    public SpriteRenderer colorSprite;
-    public SpriteRenderer outlineSprite;
-    public SpriteRenderer thrusterSprite;
-
-    [Header("Health")]
-    public int lives;
-    public float respawnTime;
-    [SerializeField] private GameObject deathParticlePrefab;
-    
     [Header("Movement")]
     public float moveSpeed;
     public float moveAcceleration;
     [Range(0f, 1f)] public float rotateTime;
 
     // Components
+    [HideInInspector] public ShipHealth health;
     [HideInInspector] public ShipShooting shooting;
-    [HideInInspector] public ShipStateMachine stateMachine;
     [HideInInspector] public ShipSpecial special;
+    [HideInInspector] public ShipStateMachine stateMachine;
+
+    [HideInInspector] public ShipUI shipUI;
+    [HideInInspector] public ShipSprite shipSprite;
+
     [HideInInspector] public Rigidbody2D rigidBody;
     [HideInInspector] public Collider2D collision;
-    [HideInInspector] public ShipUI shipUI;
 
     // Controls
     [HideInInspector] public PlayerInputControls controls;
@@ -46,12 +35,17 @@ public class Ship : MonoBehaviour
 
     private void Awake()
     {
+        health = GetComponent<ShipHealth>();
         shooting = GetComponent<ShipShooting>();
-        stateMachine = GetComponent<ShipStateMachine>();
         special = GetComponent<ShipSpecial>();
+        stateMachine = GetComponent<ShipStateMachine>();
+        
         rigidBody = GetComponent<Rigidbody2D>();
         collision = GetComponent<Collider2D>();
+
         shipUI = GetComponentInChildren<ShipUI>();
+        shipSprite = GetComponentInChildren<ShipSprite>();
+
         controls = new PlayerInputControls();
     }
 
@@ -68,7 +62,7 @@ public class Ship : MonoBehaviour
 
     public void SetStyle(Color color, GameObject projectile)
     {
-        colorSprite.color = color;
+        shipSprite.SetColor(color);
         shooting.projectilePrefab = projectile;
     }
 
@@ -85,34 +79,8 @@ public class Ship : MonoBehaviour
     {
         rigidBody.simulated = isEnabled;
         collision.enabled = isEnabled;
-        shipUI.enabled = isEnabled;
-        spriteParent.SetActive(isEnabled);
-    }
-
-    public IEnumerator CO_OnDeath()
-    {
-        EnableShip(false);
-        lives--;
-        Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
-
-        OnShipDeath?.Invoke((int)assignedPlayer);
-        if (lives <= 0)
-        {
-            OnLivesDepleted?.Invoke((int)assignedPlayer);
-        }
-        else
-        {
-            yield return new WaitForSeconds(respawnTime);
-            EnableShip(true);
-            yield return null;
-            stateMachine.SetState(stateMachine.movingState);
-        }
-    }
-
-    public void SetMoveSpeed(float value)
-    {
-        moveSpeed += value;
-        moveAcceleration += value;
+        shipUI.gameObject.SetActive(isEnabled);
+        shipSprite.SetEnabled(isEnabled);
     }
 
     private void EnableControls()

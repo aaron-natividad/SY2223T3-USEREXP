@@ -12,12 +12,12 @@ public class MovingState : ShipState
     public override void OnEnter()
     {
         ship.rigidBody.simulated = true;
-        ship.thrusterSprite.enabled = false;
+        ship.shipSprite.SetThrusterEnabled(false);
     }
 
     public override void OnUpdate()
     {
-        if (ship.fireAction.IsPressed() && ship.shooting.ammo > 0) stateMachine.SetState(stateMachine.shootingState);
+        if (ship.fireAction.IsPressed() && ship.shooting.ammo > 0 && ship.shooting.canShoot) stateMachine.SetState(stateMachine.shootingState);
 
         if (ship.specialAction.phase == InputActionPhase.Performed && ship.special.canActivate)
         {
@@ -27,7 +27,7 @@ public class MovingState : ShipState
 
         if (ship.moveAction.ReadValue<Vector2>() == Vector2.zero)
         {
-            ship.thrusterSprite.enabled = false;
+            ship.shipSprite.SetThrusterEnabled(false);
             return;
         }
 
@@ -37,6 +37,6 @@ public class MovingState : ShipState
         ship.transform.rotation = Quaternion.Euler(0, 0, toAngle);
         ship.rigidBody.AddForce(ship.transform.up * ship.moveAcceleration, ForceMode2D.Impulse);
         ship.rigidBody.velocity = Vector2.ClampMagnitude(ship.rigidBody.velocity, ship.moveSpeed);
-        ship.thrusterSprite.enabled = true;
+        ship.shipSprite.SetThrusterEnabled(true);
     }
 }

@@ -4,16 +4,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class GameUI : MonoBehaviour
+public class GameUI : UIGroup
 {
-    [SerializeField] private Canvas canvas;
+    [Header("Game UI")]
     [SerializeField] private TextMeshProUGUI timer;
     [SerializeField] public PlayerInfoUI[] playerInfo;
-
-    public void SetEnabled(bool isEnabled)
-    {
-        canvas.enabled = isEnabled;
-    }
 
     public void SetPlayerInfo(Ship ship)
     {

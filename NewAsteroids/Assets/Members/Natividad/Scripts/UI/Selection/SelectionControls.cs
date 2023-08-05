@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class SelectionControls : MonoBehaviour
 {
@@ -13,6 +12,11 @@ public class SelectionControls : MonoBehaviour
     private void Awake()
     {
         controls = new PlayerInputControls();
+    }
+
+    private void Start()
+    {
+        OnControlsInitialized?.Invoke(controls);
     }
 
     private void OnEnable()

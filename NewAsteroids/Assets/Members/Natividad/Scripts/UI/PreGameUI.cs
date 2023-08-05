@@ -3,17 +3,12 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class PreGameUI : MonoBehaviour
+public class PreGameUI : UIGroup
 {
-    [SerializeField] private Canvas canvas;
+    [Header("Pre Game UI")]
     [SerializeField] private GameObject[] panels;
     [SerializeField] private TextMeshProUGUI winnerMessage;
     [SerializeField] private TextMeshProUGUI countdown;
-
-    public void SetEnabled(bool isEnabled)
-    {
-        canvas.enabled = isEnabled;
-    }
 
     public void SetWinnerMessage(string message)
     {
@@ -32,7 +27,7 @@ public class PreGameUI : MonoBehaviour
 
     public void ActivatePanel(string panelName)
     {
-        SetEnabled(true);
+        Activate();
         foreach (GameObject panel in panels)
         {
             panel.SetActive(panel.name == panelName);

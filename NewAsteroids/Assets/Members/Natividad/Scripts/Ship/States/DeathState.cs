@@ -11,6 +11,6 @@ public class DeathState : ShipState
 
     public override void OnEnter()
     {
-        ship.StartCoroutine(ship.CO_OnDeath());
+        ship.health.TakeDamage();
     }
 }
