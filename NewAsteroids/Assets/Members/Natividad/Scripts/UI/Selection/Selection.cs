@@ -63,9 +63,9 @@ public class Selection : MonoBehaviour
 
     private IEnumerator CO_ActivateAnimation()
     {
-        title.color = activatedColor;
+        //title.color = activatedColor;
         yield return new WaitForSeconds(0.1f);
-        title.color = Color.white;
+        //title.color = Color.white;
         yield return null;
         OnActivated?.Invoke();
     }
