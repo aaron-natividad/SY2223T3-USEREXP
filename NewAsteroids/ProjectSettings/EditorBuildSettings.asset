@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Members/Natividad/Scenes/MultiplayerScene.unity
     guid: a67415605a7f9e941a2ab087881d8f99
+  - enabled: 1
+    path: Assets/Members/Chan/Testing Scenes/CharacterSelectionScene.unity
+    guid: 54b05a4b825c14c4bbda4309cef29a31
   m_configObjects: {}
