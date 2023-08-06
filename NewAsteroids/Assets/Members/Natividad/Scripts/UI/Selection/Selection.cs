@@ -2,18 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 
 public class Selection : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI title;
-    [SerializeField] private Color activatedColor;
+    [Header("Components")]
+    [SerializeField] private Image[] images;
+    [SerializeField] private TextMeshProUGUI[] texts;
     [Space(10)]
+    [SerializeField] private Color activatedColor;
+
+    [Header("Connections")]
     [SerializeField] private Selection selectionUp;
     [SerializeField] private Selection selectionDown;
     [SerializeField] private Selection selectionLeft;
     [SerializeField] private Selection selectionRight;
-    [Space(10)]
+
+    [Header("Behavior")]
     public UnityEvent OnActivated;
 
     private SelectionGroup group;
@@ -63,10 +69,25 @@ public class Selection : MonoBehaviour
 
     private IEnumerator CO_ActivateAnimation()
     {
-        title.color = activatedColor;
+        SetColor(activatedColor);
         yield return new WaitForSeconds(0.1f);
-        title.color = Color.white;
+        SetColor(Color.white);
         yield return null;
         OnActivated?.Invoke();
+    }
+
+    private void SetColor(Color color)
+    {
+        if (images.Length > 0)
+        {
+            foreach (Image i in images)
+                i.color = color;
+        }
+
+        if (texts.Length > 0)
+        {
+            foreach (TextMeshProUGUI t in texts)
+                t.color = color;
+        }
     }
 }

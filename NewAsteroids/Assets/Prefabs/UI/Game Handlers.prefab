@@ -50,7 +50,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4563700105b6d24c994a137b43e74a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 3115179371514726623}
+  images: []
+  texts:
+  - {fileID: 3115179371514726623}
   activatedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectionUp: {fileID: 7524187335183306094}
   selectionDown: {fileID: 7524187335539264856}
@@ -1948,7 +1950,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4563700105b6d24c994a137b43e74a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 7524187335866976751}
+  images: []
+  texts:
+  - {fileID: 7524187335866976751}
   activatedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectionUp: {fileID: 0}
   selectionDown: {fileID: 434813751119811803}
@@ -2602,7 +2606,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4563700105b6d24c994a137b43e74a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 7524187334757112547}
+  images: []
+  texts:
+  - {fileID: 7524187334757112547}
   activatedColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   selectionUp: {fileID: 434813751119811803}
   selectionDown: {fileID: 0}
