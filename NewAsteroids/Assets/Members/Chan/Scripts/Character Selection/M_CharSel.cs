@@ -1,24 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class M_CharSel : MonoBehaviour
+public class M_CharSel : BaseManager
 {
+    [Header("Selection Handlers")]
     [SerializeField] TestCharSel FirstPlayerSelection;
     [SerializeField] TestCharSel SecondPlayerSelection;
 
-    void Start()
+    private void OnEnable()
     {
-        InvokeRepeating("CheckPlayerReady", 3f, 2.5f);
+        TestCharSel.OnReadyChanged += CheckPlayerReady;
     }
 
-    void CheckPlayerReady()
+    private void OnDisable()
+    {
+        TestCharSel.OnReadyChanged -= CheckPlayerReady;
+    }
+
+    private void Start()
+    {
+        cover.FadeCover(false, 0.5f);
+    }
+
+    void CheckPlayerReady(AssignedPlayer player, bool isReady)
     {
         if ((FirstPlayerSelection.isReady == true) && (SecondPlayerSelection.isReady == true))
         {
-            // start game if both are ready
-            SceneManager.LoadScene("StageSelect");
+            LoadScene("StageSelect");
         }
     }
 }

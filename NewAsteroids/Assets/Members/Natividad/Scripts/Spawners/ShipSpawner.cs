@@ -13,13 +13,15 @@ public class ShipSpawner : MonoBehaviour
     [Header("Ship Spawning")]
     [SerializeField] private GameObject[] shipPrefabs; // prefabs have to be in order
     [SerializeField] private ShipType[] typeFallback;
-    [SerializeField] private bool fixedSpawning;
+    [SerializeField] private string[] assignedPlayerPrefs;
+    
 
     [Header("Styles")]
     [SerializeField] private Color[] colors;
     [SerializeField] private GameObject[] projectiles;
 
     [Header("Debug")]
+    [SerializeField] private bool fixedSpawning;
     [SerializeField] private bool infiniteLives;
 
     [HideInInspector] public List<Transform> spawnpoints = new List<Transform>();
@@ -43,13 +45,19 @@ public class ShipSpawner : MonoBehaviour
     public void SpawnShips(int spawnAmount)
     {
         int spawnIndex;
+        int shipType;
         List<Transform> validSpawnpoints = new List<Transform>(spawnpoints);
 
         for(int i = 0; i < spawnAmount; i++)
         {
             spawnIndex = fixedSpawning ? 0 : Random.Range(0, validSpawnpoints.Count);
 
-            Ship spawnedShip = Instantiate(shipPrefabs[(int)typeFallback[i]], validSpawnpoints[spawnIndex].position, Quaternion.identity).GetComponent<Ship>();
+            if (PlayerPrefs.HasKey(assignedPlayerPrefs[i]))
+                shipType = PlayerPrefs.GetInt(assignedPlayerPrefs[i]);
+            else
+                shipType = (int)typeFallback[i];
+
+            Ship spawnedShip = Instantiate(shipPrefabs[shipType], validSpawnpoints[spawnIndex].position, Quaternion.identity).GetComponent<Ship>();
             spawnedShip.SetPlayer((AssignedPlayer)i);
             spawnedShip.SetStyle(colors[i], projectiles[i]);
             spawnedShip.health.infiniteLives = infiniteLives;

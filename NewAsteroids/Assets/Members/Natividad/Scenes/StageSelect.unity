@@ -16009,15 +16009,19 @@ MonoBehaviour:
   spawnpointParent: {fileID: 1952702682}
   shipPrefabs:
   - {fileID: 7999014743720670063, guid: 6dd9df5b7c68a88428510b3eee28df73, type: 3}
+  - {fileID: 7999014743720670063, guid: e000ce6b73d2e3f45b7382457bba3106, type: 3}
   - {fileID: 7999014743720670063, guid: 46b6c75fdfb8813489a5ef1dccdbd050, type: 3}
-  typeFallback: 0000000001000000
-  fixedSpawning: 1
+  typeFallback: 0000000002000000
+  assignedPlayerPrefs:
+  - firstCharacter
+  - secondCharacter
   colors:
   - {r: 1, g: 0, b: 0, a: 1}
   - {r: 0.01419878, g: 0, b: 1, a: 1}
   projectiles:
   - {fileID: 4051360557861466086, guid: 9095af9e53b1e5d4dac0f02eea8349e4, type: 3}
   - {fileID: 4051360557861466086, guid: ff938f818e3be974b90a880dac66b227, type: 3}
+  fixedSpawning: 1
   infiniteLives: 1
   spawnpoints: []
   ships: []

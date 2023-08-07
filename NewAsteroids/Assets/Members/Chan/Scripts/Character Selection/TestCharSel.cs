@@ -1,118 +1,44 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class TestCharSel : MonoBehaviour
 {
-    [SerializeField] GameObject redShipPanel;
-    [SerializeField] GameObject blueShipPanel;
-    [SerializeField] GameObject whiteShipPanel;
-    [SerializeField] int PlayerNumber;
+    public static event Action<AssignedPlayer, bool> OnReadyChanged;
 
-    bool isRedOn = false;
-    bool isBlueOn = false;
-    bool isWhiteOn = false;
+    [SerializeField] AssignedPlayer assignedPlayer;
+    [SerializeField] private SelectionGroup selectionGroup;
+    [SerializeField] private CharacterSelectionPanel panel;
 
-    int selectedCharacter;
-
+    private string[] assignedPlayerPref = { "firstCharacter", "secondCharacter" };
     public bool isReady;
 
-    void Start()
+    private void OnEnable()
     {
-        redShipPanel.SetActive(false);
-        blueShipPanel.SetActive(false);
-        whiteShipPanel.SetActive(false);
-
-        isRedOn = false;
-        isBlueOn = false;
-        isWhiteOn = false;
-        selectedCharacter = 0;
+        selectionGroup.OnSelectionCancelled += CancelSelection;
     }
 
-    void ReadyUp()
+    private void OnDisable()
     {
-        isReady = true;
-
-        // disable movement 
-        // press K or numpad 2 to cancel ready
-        // call NotReady() which will make isReady off and enable movement
+        selectionGroup.OnSelectionCancelled -= CancelSelection;
     }
 
-    public void SelectRed()
+    public void SetReady(bool isReady)
     {
-        isBlueOn = false;
-        isWhiteOn = false;
-
-        if (!isRedOn) {
-        blueShipPanel.SetActive(false);
-        whiteShipPanel.SetActive(false);
-
-        redShipPanel.SetActive(true);
-        isRedOn = true;
-        }
-        else if (isRedOn) {
-            if (PlayerNumber == 1) {
-                selectedCharacter = 1;
-                PlayerPrefs.SetInt("firstCharacter", selectedCharacter);
-                ReadyUp();
-            }
-            else if (PlayerNumber == 2) {
-                selectedCharacter = 1;
-                PlayerPrefs.SetInt("secondCharacter", selectedCharacter);
-                ReadyUp();
-            }
-        }
+        this.isReady = isReady;
+        panel.SetReady(isReady);
+        OnReadyChanged?.Invoke(assignedPlayer, isReady);
     }
 
-    public void SelectBlue()
+    public void LockInSelection(int selectedCharacter)
     {
-        isRedOn = false;
-        isWhiteOn = false;
-
-        if (!isBlueOn) {
-        redShipPanel.SetActive(false);
-        whiteShipPanel.SetActive(false);
-
-        blueShipPanel.SetActive(true);
-        isBlueOn = true;
-        }
-        else if (isBlueOn) {
-             if (PlayerNumber == 1) {
-                selectedCharacter = 2;
-                PlayerPrefs.SetInt("firstCharacter", selectedCharacter);
-                ReadyUp();
-            }
-            else if (PlayerNumber == 2) {
-                selectedCharacter = 2;
-                PlayerPrefs.SetInt("secondCharacter", selectedCharacter);
-                ReadyUp();
-            }
-        }
+        PlayerPrefs.SetInt(assignedPlayerPref[(int)assignedPlayer], selectedCharacter);
+        SetReady(true);
     }
-    
-    public void SelectWhite()
+
+    public void CancelSelection()
     {
-        isBlueOn = false;
-        isRedOn = false;
-
-        if (!isWhiteOn) {
-        blueShipPanel.SetActive(false);
-        redShipPanel.SetActive(false);
-
-        whiteShipPanel.SetActive(true);
-        isWhiteOn = true;
-        }
-        else if (isWhiteOn) {
-             if (PlayerNumber == 1) {
-                selectedCharacter = 3;
-                PlayerPrefs.SetInt("firstCharacter", selectedCharacter);
-                ReadyUp();
-            }
-            else if (PlayerNumber == 2) {
-                selectedCharacter = 3;
-                PlayerPrefs.SetInt("secondCharacter", selectedCharacter);
-                ReadyUp();
-            }
-        }
+        SetReady(false);
     }
 }

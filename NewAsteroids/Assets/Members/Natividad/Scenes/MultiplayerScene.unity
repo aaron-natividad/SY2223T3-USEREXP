@@ -23451,30 +23451,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 912576417}
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BaseManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: StageSelect
-      objectReference: {fileID: 0}
-    - target: {fileID: 434813751119811803, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 2465187204685516258, guid: 28b24660fae7bf84784758b37510a500, type: 3}
       propertyPath: m_LocalPosition.x
       value: 13.5
@@ -23560,38 +23536,6 @@ PrefabInstance:
       value: MultiplayerScene
       objectReference: {fileID: 0}
     - target: {fileID: 7524187335183306094, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 912576417}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
-      propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: MainMenuScene
-      objectReference: {fileID: 0}
-    - target: {fileID: 7524187335539264856, guid: 28b24660fae7bf84784758b37510a500, type: 3}
       propertyPath: OnActivated.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}

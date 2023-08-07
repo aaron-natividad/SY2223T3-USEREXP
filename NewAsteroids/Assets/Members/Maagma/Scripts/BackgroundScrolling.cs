@@ -5,6 +5,7 @@ using UnityEngine;
 public class BackgroundScrolling : MonoBehaviour
 {
     public float scrollSpeed = 100.0f;
+    public float scrollLimit;
     private Vector2 startPosition;
 
     void Start()
@@ -14,7 +15,7 @@ public class BackgroundScrolling : MonoBehaviour
 
     void Update()
     {
-        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, 1640);
+        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, scrollLimit);
         transform.position = startPosition + Vector2.left * newPosition;
     }
 }

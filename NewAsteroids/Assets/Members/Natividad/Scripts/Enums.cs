@@ -14,5 +14,6 @@ public enum AssignedPlayerUI
 public enum ShipType
 {
     Bounce = 0,
-    Dash = 1
+    Shield = 1,
+    Dash = 2
 }

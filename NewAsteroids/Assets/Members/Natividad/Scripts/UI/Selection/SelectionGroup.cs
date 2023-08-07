@@ -1,17 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Events;
+
 
 public class SelectionGroup : MonoBehaviour
 {
+    public event Action<int> OnSelectionMoved;
+    public event Action OnSelectionCancelled;
+
     [SerializeField] private AssignedPlayerUI assignedPlayer;
-    public SelectionCursor cursor;
-
+    [SerializeField] public SelectionCursor cursor;
+    [Space(10)]
+    [SerializeField] private int startingSelection = 0;
     [SerializeField] private bool lockCursorOnSelect;
-
-    [SerializeField] private Selection activeSelection;
-
+    
+    private Selection activeSelection;
+    private List<Selection> selections = new List<Selection>();
     private bool isEnabled = true;
 
     private void OnEnable()
@@ -20,8 +27,9 @@ public class SelectionGroup : MonoBehaviour
         for (int i = 0; i < transform.childCount; i++)
         {
             transform.GetChild(i).GetComponent<Selection>().SetGroup(this);
+            selections.Add(transform.GetChild(i).GetComponent<Selection>());
         }
-        transform.GetChild(0).GetComponent<Selection>().SetSelected(true);
+        transform.GetChild(startingSelection).GetComponent<Selection>().SetSelected(true);
     }
 
     private void OnDisable()
@@ -69,7 +77,11 @@ public class SelectionGroup : MonoBehaviour
     public void MoveActiveSelection(InputAction.CallbackContext context)
     {
         if (!isEnabled) return;
-        activeSelection?.MoveTo(context.ReadValue<Vector2>());
+        if (activeSelection != null)
+        {
+            if (activeSelection.MoveTo(context.ReadValue<Vector2>()))
+                OnSelectionMoved?.Invoke(selections.IndexOf(activeSelection));
+        }
     }
 
     public void ActivateSelection(InputAction.CallbackContext context)
@@ -83,6 +95,7 @@ public class SelectionGroup : MonoBehaviour
     public void CancelSelection(InputAction.CallbackContext context)
     {
         if (isEnabled) return;
+        OnSelectionCancelled?.Invoke();
         EnableGroup();
     }
 }

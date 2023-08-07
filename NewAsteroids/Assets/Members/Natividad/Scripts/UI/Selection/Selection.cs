@@ -38,28 +38,34 @@ public class Selection : MonoBehaviour
         }
     }
 
-    public void MoveTo(Vector2 selectDirection)
+    public bool MoveTo(Vector2 selectDirection)
     {
         if (selectDirection.y > 0 && selectionUp != null)
         {
             SetSelected(false);
             selectionUp.SetSelected(true);
+            return true;
         }
         else if (selectDirection.y < 0 && selectionDown != null)
         {
             SetSelected(false);
             selectionDown.SetSelected(true);
+            return true;
         }
         else if (selectDirection.x < 0 && selectionLeft != null)
         {
             SetSelected(false);
             selectionLeft.SetSelected(true);
+            return true;
         }
         else if (selectDirection.x > 0 && selectionRight != null)
         {
             SetSelected(false);
             selectionRight.SetSelected(true);
+            return true;
         }
+
+        return false;
     }
 
     public void Activate()
