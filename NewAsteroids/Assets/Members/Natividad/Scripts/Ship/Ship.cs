@@ -14,6 +14,8 @@ public class Ship : MonoBehaviour
     public float moveSpeed;
     public float moveAcceleration;
     [Range(0f, 1f)] public float rotateTime;
+    [Space(10)]
+    public AudioClip deathSound;
 
     // Components
     [HideInInspector] public ShipHealth health;

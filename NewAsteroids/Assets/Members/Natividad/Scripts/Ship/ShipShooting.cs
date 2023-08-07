@@ -21,6 +21,9 @@ public class ShipShooting : MonoBehaviour
     [Header("Debug")]
     public bool canShoot;
 
+    [Header("Sound")]
+    public AudioClip shootSound;
+
     [HideInInspector] public GameObject projectilePrefab;
     private float ammoRegenTimer = 0;
     
@@ -44,6 +47,7 @@ public class ShipShooting : MonoBehaviour
     {
         if (!canShoot) return;
 
+        AudioManager.instance?.sfx.PlayOneShot(shootSound);
         ammo = Mathf.Max(ammo - bounces, 0);
         Instantiate(shootParticlePrefab, projectileSpawn.position, projectileSpawn.rotation);
         Projectile spawnedProjectile = Instantiate(projectilePrefab, projectileSpawn.position, projectileSpawn.rotation).GetComponent<Projectile>();

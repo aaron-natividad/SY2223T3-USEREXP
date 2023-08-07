@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 9147185701556434106}
   - component: {fileID: 3193303458803834826}
-  m_Layer: 0
+  - component: {fileID: 3790649561470555137}
+  m_Layer: 10
   m_Name: Shield
-  m_TagString: Untagged
+  m_TagString: PlayerOnlyPass
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9147185701556434106
 Transform:
   m_ObjectHideFlags: 0
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 1d60857fb7b1b6849bf52bfdcf72a046, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,6 +85,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &3790649561470555137
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200177013754709812}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.625
 --- !u!1 &5260837971891212746
 GameObject:
   m_ObjectHideFlags: 0
@@ -904,7 +921,7 @@ GameObject:
   - component: {fileID: 7640951086746020789}
   - component: {fileID: 7999014743720670049}
   - component: {fileID: 7999014743720670051}
-  - component: {fileID: 1158780440775023002}
+  - component: {fileID: 8234042128269370243}
   - component: {fileID: 7999014743720670050}
   - component: {fileID: 7999014743720670054}
   m_Layer: 7
@@ -950,6 +967,7 @@ MonoBehaviour:
   moveSpeed: 5
   moveAcceleration: 5
   rotateTime: 0.1
+  deathSound: {fileID: 8300000, guid: 96eb01683f8ab2f4fa03a17b4ac6f25f, type: 3}
   health: {fileID: 0}
   shooting: {fileID: 0}
   special: {fileID: 0}
@@ -1024,6 +1042,7 @@ MonoBehaviour:
   recoilPerBounce: 10
   extraBounces: 0
   canShoot: 1
+  shootSound: {fileID: 8300000, guid: cc71e203f328a94479e2b52a96f397a4, type: 3}
   projectilePrefab: {fileID: 4051360557861466086, guid: ff938f818e3be974b90a880dac66b227, type: 3}
 --- !u!114 &7999014743720670051
 MonoBehaviour:
@@ -1037,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace9e647503689442b226cbbcd7ca6e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1158780440775023002
+--- !u!114 &8234042128269370243
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1046,14 +1065,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 7999014743720670063}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad908320b88288841a5f00fd6ef384ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 278162bfa5631a54ba485604263b6a3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateSound: {fileID: 8300000, guid: 0ffc08929f203624ab857cc20ad6ab1e, type: 3}
   ship: {fileID: 7999014743720670048}
-  activeTime: 0
-  specialIcon: {fileID: 21300000, guid: 7586c3bb215245a4a9794b2efe7ddc6d, type: 3}
+  activeTime: 2
+  specialIcon: {fileID: 21300000, guid: 34e0f6534e57609458ac48581688bfad, type: 3}
   canActivate: 0
   isActive: 0
+  shieldCollider: {fileID: 1200177013754709812}
 --- !u!50 &7999014743720670050
 Rigidbody2D:
   serializedVersion: 4

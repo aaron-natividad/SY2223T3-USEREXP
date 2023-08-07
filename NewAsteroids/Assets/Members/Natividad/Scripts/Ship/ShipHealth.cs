@@ -22,6 +22,7 @@ public class ShipHealth : MonoBehaviour
     public void TakeDamage()
     {
         ship.EnableShip(false);
+        AudioManager.instance?.sfx.PlayOneShot(ship.deathSound);
         Instantiate(deathParticlePrefab, transform.position, Quaternion.identity);
 
         if (!infiniteLives)

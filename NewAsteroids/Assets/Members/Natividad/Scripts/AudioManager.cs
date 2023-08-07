@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -12,6 +13,9 @@ public class AudioManager : MonoBehaviour
     [Space(10)]
     public AudioSource bgm;
     public AudioSource sfx;
+    [Space(10)]
+    [Range(-50,0)] public float bgmDefault;
+    [Range(-50, 0)] public float sfxDefault;
 
     private void OnEnable()
     {
@@ -34,10 +38,13 @@ public class AudioManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
+    }
 
-        InitializeMixerValues("Master");
-        InitializeMixerValues("BGM");
-        InitializeMixerValues("SFX");
+    private void Start()
+    {
+        InitializeMixerValues("Master", 0, true);
+        InitializeMixerValues("BGM", bgmDefault, true);
+        InitializeMixerValues("SFX", sfxDefault, true);
     }
 
     public void ChangeVolume(string volumeName, Slider slider)
@@ -58,16 +65,16 @@ public class AudioManager : MonoBehaviour
         }
     }
 
-    private void InitializeMixerValues(string volumeName)
+    private void InitializeMixerValues(string volumeName, float defaultValue, bool forceValue)
     {
-        if (PlayerPrefs.HasKey(volumeName))
+        if (PlayerPrefs.HasKey(volumeName) && !forceValue)
         {
             mainMixer.SetFloat(volumeName, PlayerPrefs.GetFloat(volumeName));
         }
         else
         {
-            mainMixer.SetFloat(volumeName, 0);
-            PlayerPrefs.SetFloat(volumeName, 0);
+            mainMixer.SetFloat(volumeName, defaultValue);
+            PlayerPrefs.SetFloat(volumeName, defaultValue);
         }
     }
 }

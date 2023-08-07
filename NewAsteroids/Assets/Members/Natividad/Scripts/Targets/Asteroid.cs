@@ -12,6 +12,7 @@ public class Asteroid : Target
 
     public override void DoTargetBehavior()
     {
+        AudioManager.instance?.sfx.PlayOneShot(targetSound);
         SpawnProjectiles();
         CameraController.instance.Shake(0.2f, 0.1f, 0.05f);
         Destroy(gameObject);

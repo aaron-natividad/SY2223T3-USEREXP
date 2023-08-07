@@ -24,5 +24,9 @@ public class ProjectileDetection : MonoBehaviour
             target.DoTargetBehavior();
             Destroy(transform.parent.gameObject);
         }
+        else if (collision.CompareTag("PlayerOnlyPass"))
+        {
+            Destroy(transform.parent.gameObject);
+        }
     }
 }

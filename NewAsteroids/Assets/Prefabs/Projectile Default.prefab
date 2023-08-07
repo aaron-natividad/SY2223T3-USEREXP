@@ -103,6 +103,7 @@ MonoBehaviour:
   rigidBody: {fileID: -3093634981005815594}
   bounceParticle: {fileID: 6226981086072599009, guid: 05ec41477f3f7c240bc4d05e5b02ab1d, type: 3}
   projectileSpeed: 20
+  bounceSound: {fileID: 8300000, guid: 678762ca953d9684baf78ce6c692bcb4, type: 3}
   ownerID: 0
 --- !u!70 &4055153181541749199
 CapsuleCollider2D:

@@ -865,6 +865,7 @@ MonoBehaviour:
   moveSpeed: 5
   moveAcceleration: 5
   rotateTime: 0.1
+  deathSound: {fileID: 8300000, guid: 96eb01683f8ab2f4fa03a17b4ac6f25f, type: 3}
   health: {fileID: 0}
   shooting: {fileID: 0}
   special: {fileID: 0}
@@ -939,6 +940,7 @@ MonoBehaviour:
   recoilPerBounce: 10
   extraBounces: 0
   canShoot: 1
+  shootSound: {fileID: 8300000, guid: cc71e203f328a94479e2b52a96f397a4, type: 3}
   projectilePrefab: {fileID: 4051360557861466086, guid: ff938f818e3be974b90a880dac66b227, type: 3}
 --- !u!114 &7999014743720670051
 MonoBehaviour:
@@ -964,6 +966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9676906516a772a49a502146358ddd62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateSound: {fileID: 8300000, guid: 6cb67a5eae5a0ea4b9d492f0f1874e10, type: 3}
   ship: {fileID: 7999014743720670048}
   activeTime: 1
   specialIcon: {fileID: 21300000, guid: 3d7257f49231a68479034e89a86be233, type: 3}

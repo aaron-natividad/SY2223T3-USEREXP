@@ -16,6 +16,9 @@ public class SelectionGroup : MonoBehaviour
     [Space(10)]
     [SerializeField] private int startingSelection = 0;
     [SerializeField] private bool lockCursorOnSelect;
+    [Space(10)]
+    [SerializeField] private AudioClip activateSound;
+    [SerializeField] private AudioClip cancelSound;
     
     private Selection activeSelection;
     private List<Selection> selections = new List<Selection>();
@@ -87,6 +90,7 @@ public class SelectionGroup : MonoBehaviour
     public void ActivateSelection(InputAction.CallbackContext context)
     {
         if (!isEnabled) return;
+        AudioManager.instance?.sfx.PlayOneShot(activateSound);
         cursor.Pop();
         activeSelection?.Activate();
         if (lockCursorOnSelect) DisableGroup();
@@ -95,6 +99,7 @@ public class SelectionGroup : MonoBehaviour
     public void CancelSelection(InputAction.CallbackContext context)
     {
         if (isEnabled) return;
+        AudioManager.instance?.sfx.PlayOneShot(cancelSound);
         OnSelectionCancelled?.Invoke();
         EnableGroup();
     }

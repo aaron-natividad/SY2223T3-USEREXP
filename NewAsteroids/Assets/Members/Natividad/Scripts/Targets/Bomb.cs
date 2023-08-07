@@ -21,6 +21,7 @@ public class Bomb : Target
             }
         }
 
+        AudioManager.instance?.sfx.PlayOneShot(targetSound);
         SpriteFade explosionParticle = Instantiate(explosionParticlePrefab, transform.position, Quaternion.identity).GetComponent<SpriteFade>();
         explosionParticle.Initialize(explosionRadius * 2, 0.3f);
         CameraController.instance.Shake(0.5f, 0.2f, 0.05f);

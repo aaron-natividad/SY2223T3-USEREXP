@@ -8,6 +8,7 @@ public class Dash : ShipSpecial
 
     public override void Activate()
     {
+        AudioManager.instance?.sfx.PlayOneShot(activateSound);
         StartCoroutine(CO_Dash());
     }
 

@@ -158,6 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4e0f63f0ca5f3b468295ced3926838e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetSound: {fileID: 8300000, guid: 3c4d3dbdf6b2bcd419dca4c5051f9e03, type: 3}
   destroyMask:
     serializedVersion: 2
     m_Bits: 128

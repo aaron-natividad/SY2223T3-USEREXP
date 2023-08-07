@@ -7,6 +7,7 @@ public class ShipSpecial : MonoBehaviour
 {
     public event Action<bool, int> OnCanActivateChanged;
 
+    [SerializeField] protected AudioClip activateSound;
     [SerializeField] protected Ship ship;
     [SerializeField] protected float activeTime;
     [Space(10)]

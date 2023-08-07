@@ -7,6 +7,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private Rigidbody2D rigidBody;
     [SerializeField] private GameObject bounceParticle;
     [SerializeField] private float projectileSpeed;
+    [SerializeField] private AudioClip bounceSound;
 
     [HideInInspector] public int ownerID;
     private int bounces = 0;
@@ -39,6 +40,7 @@ public class Projectile : MonoBehaviour
             else
             {
                 bounces--;
+                AudioManager.instance?.sfx.PlayOneShot(bounceSound);
                 Instantiate(bounceParticle, transform.position, Quaternion.identity);
                 transform.up = Vector2.Reflect(transform.up, collision.contacts[0].normal);
             }
@@ -47,6 +49,7 @@ public class Projectile : MonoBehaviour
 
     private void OnDestroy()
     {
+        AudioManager.instance?.sfx.PlayOneShot(bounceSound);
         Instantiate(bounceParticle, transform.position, Quaternion.identity);
     }
 }

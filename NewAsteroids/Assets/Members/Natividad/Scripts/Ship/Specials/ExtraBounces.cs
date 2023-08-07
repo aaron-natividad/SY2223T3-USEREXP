@@ -6,6 +6,7 @@ public class ExtraBounces : ShipSpecial
 {
     public override void Activate()
     {
+        AudioManager.instance?.sfx.PlayOneShot(activateSound);
         ship.shooting.extraBounces = 3;
     }
 }

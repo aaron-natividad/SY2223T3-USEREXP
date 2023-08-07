@@ -8,12 +8,15 @@ public class PowerUp : MonoBehaviour
     [SerializeField] private Collider2D col;
     [SerializeField] private bool respawnable;
     [SerializeField] private float respawnTime;
+    [Space(10)]
+    public AudioClip powerupSound;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<ShipSpecial>())
         {
             collision.GetComponent<ShipSpecial>().SetCanActivate(true);
+            AudioManager.instance?.sfx.PlayOneShot(powerupSound);
 
             if (respawnable)
                 StartCoroutine(CO_RespawnPowerup());

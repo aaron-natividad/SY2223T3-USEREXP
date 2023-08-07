@@ -4,5 +4,7 @@ using UnityEngine;
 
 public abstract class Target : MonoBehaviour
 {
+    public AudioClip targetSound;
+
     public abstract void DoTargetBehavior();
 }

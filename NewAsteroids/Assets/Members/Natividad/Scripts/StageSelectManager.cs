@@ -8,6 +8,7 @@ public class StageSelectManager : BaseManager
     [SerializeField] private StageSelectUI ui;
     [SerializeField] private ShipSpawner spawner;
 
+    public AudioClip countdownSound;
     public List<string> sceneNames;
 
     private bool isCountingDown = false;
@@ -65,6 +66,7 @@ public class StageSelectManager : BaseManager
 
         for(int i = 3; i > 0; i--)
         {
+            AudioManager.instance?.sfx.PlayOneShot(countdownSound);
             ui.SetPrompt(i);
             timer = 1f;
             while(timer > 0)

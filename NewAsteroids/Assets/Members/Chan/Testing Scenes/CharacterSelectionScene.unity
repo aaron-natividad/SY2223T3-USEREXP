@@ -1353,7 +1353,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 20, y: 25}
+  m_AnchoredPosition: {x: 30, y: 25}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &503353793
@@ -1385,8 +1385,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4282203647
+  m_fontColor: {r: 1, g: 0.24056602, b: 0.24056602, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1627,6 +1627,8 @@ MonoBehaviour:
   cursor: {fileID: 2022244896}
   startingSelection: 2
   lockCursorOnSelect: 1
+  activateSound: {fileID: 8300000, guid: d4dbeaac49543434a99047f9249f7ebf, type: 3}
+  cancelSound: {fileID: 8300000, guid: 3692f785fc98e304ea5673e4028c68dd, type: 3}
 --- !u!1 &585508581
 GameObject:
   m_ObjectHideFlags: 0
@@ -2060,6 +2062,8 @@ MonoBehaviour:
   cursor: {fileID: 368010252}
   startingSelection: 0
   lockCursorOnSelect: 1
+  activateSound: {fileID: 8300000, guid: d4dbeaac49543434a99047f9249f7ebf, type: 3}
+  cancelSound: {fileID: 8300000, guid: 3692f785fc98e304ea5673e4028c68dd, type: 3}
 --- !u!224 &894055686
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3333,7 +3337,7 @@ MonoBehaviour:
     baseSprite: {fileID: 21300000, guid: 32b6b6823e88df5418d9c58d5099e24f, type: 3}
     colorSprite: {fileID: 21300000, guid: 32460914da993fc4a94532c6b47afdea, type: 3}
     outlineSprite: {fileID: 21300000, guid: 6945d7d1926520642ba80827af734b86, type: 3}
-    powerupDescription: Activate a shield that reflects projectiles for 2 seconds
+    powerupDescription: Activate a shield that blocks projectiles for 2 seconds
   - name: Speed
     baseSprite: {fileID: 21300000, guid: 3fd256b4240fc0044994129e13734b9d, type: 3}
     colorSprite: {fileID: 21300000, guid: aa979756fd750ca4bb6a1b6cca260ddf, type: 3}
@@ -3603,7 +3607,7 @@ MonoBehaviour:
     baseSprite: {fileID: 21300000, guid: 32b6b6823e88df5418d9c58d5099e24f, type: 3}
     colorSprite: {fileID: 21300000, guid: 32460914da993fc4a94532c6b47afdea, type: 3}
     outlineSprite: {fileID: 21300000, guid: 6945d7d1926520642ba80827af734b86, type: 3}
-    powerupDescription: Activate a shield that reflects projectiles for 2 seconds
+    powerupDescription: Activate a shield that blocks projectiles for 2 seconds
   - name: Speed
     baseSprite: {fileID: 21300000, guid: 3fd256b4240fc0044994129e13734b9d, type: 3}
     colorSprite: {fileID: 21300000, guid: aa979756fd750ca4bb6a1b6cca260ddf, type: 3}
@@ -3693,7 +3697,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -20, y: 25}
+  m_AnchoredPosition: {x: -30, y: 25}
   m_SizeDelta: {x: 50, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1457848015
@@ -3727,8 +3731,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4294918755
+  m_fontColor: {r: 0.38713476, g: 0.25943398, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
