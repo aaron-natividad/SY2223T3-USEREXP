@@ -674,7 +674,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 896
   spawnCheckRadius: 1
-  spawnInterval: 10
+  spawnInterval: 6
   spawnParticle: {fileID: 6226981086072599009, guid: 4c36618e44ca86a4684d26c765a3073c, type: 3}
   itemPrefabs:
   - {fileID: 1537058467672230986, guid: ae42f86910e6c7b43895b398adbadb18, type: 3}
